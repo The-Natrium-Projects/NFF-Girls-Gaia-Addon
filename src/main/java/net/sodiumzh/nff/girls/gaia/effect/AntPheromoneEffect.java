@@ -58,18 +58,9 @@ public class AntPheromoneEffect extends MobEffect {
                         && !l.getLastHurtMob().hasEffect(NFFGirlsGaiaEffects.ANT_PHEROMONE.get())
                         && !l.getLastHurtMob().getType().is(NFFGirlsGaiaTags.ANT_PHEROMONE_AFFECTED)
                         )
-                    .min(PLAYER_FIRST); // Find a living with the pheromone effect, prioritize player
+                    .min(Comparator.comparingInt(l -> (l instanceof Player) ? 0 : 1)); // Find a living with the pheromone effect, prioritize player
                 e.ifPresent(l -> mob.setTarget(l.getLastHurtMob()));
             }
-        }*/
-
-        private static final Comparator<LivingEntity> PLAYER_FIRST = (l1, l2) -> {
-            boolean b1 = l1 instanceof Player;
-            boolean b2 = l2 instanceof Player;
-            if (b1 == b2) return 0;
-            else if (b1) return -1;
-            else return 1;
-        };
-
+        }
     }
 }
