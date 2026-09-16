@@ -1,7 +1,7 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
-import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagAlrauneTamingProcess;
-import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagEnderExecutorTamingProcess;
+import net.sodiumzh.nff.girls.entity.tamingprocess.HmagAlrauneTamingProcess;
+import net.sodiumzh.nff.girls.entity.tamingprocess.HmagEnderExecutorTamingProcess;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.*;
 import net.sodiumzh.nff.girls.registry.NFFGirlsFriendingItems;

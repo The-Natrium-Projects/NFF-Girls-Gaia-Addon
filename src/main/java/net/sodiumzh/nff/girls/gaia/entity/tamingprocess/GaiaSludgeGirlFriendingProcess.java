@@ -6,7 +6,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagSlimeGirlTamingProcess;
+import net.sodiumzh.nff.girls.entity.tamingprocess.HmagSlimeGirlTamingProcess;
 import net.sodiumzh.nff.girls.item.MagicalGelBottleItem;
 import net.sodiumzh.nff.girls.item.MagicalGelColorUtils;
 import net.sodiumzh.nff.girls.registry.NFFGirlsItems;

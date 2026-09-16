@@ -3,7 +3,7 @@ package net.sodiumzh.nff.girls.gaia.entity.tamingprocess;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
-import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.NFFGirlsItemDroppingTamingProcess;
+import net.sodiumzh.nff.girls.entity.tamingprocess.NFFGirlsItemDroppingTamingProcess;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
