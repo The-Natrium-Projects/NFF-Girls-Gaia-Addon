@@ -32,13 +32,13 @@ public class AntPheromoneEffect extends MobEffect {
         // Ant-like mobs (defined by tag) are neutral to players with this effect
         @SubscribeEvent
         public static void onChangeTarget(LivingChangeTargetEvent event) {
-            if (event.getEntity().hasEffect(NFFGirlsGaiaEffects.ANT_PHEROMONE.get())
+            if (event.getEntityLiving().hasEffect(NFFGirlsGaiaEffects.ANT_PHEROMONE.get())
                 && event.getNewTarget() != null
                 && event.getNewTarget().getType().is(NFFGirlsGaiaTags.ANT_PHEROMONE_AFFECTED))
             {
                 if (EntityComponentAPI.getComponentManager(event.getNewTarget())
                     .getSubComponent("default_anger_handler", NFUEntityComponents.DEFAULT_ANGER_HANDLER.get())
-                    .filter(c -> c.isAngryAt(event.getEntity())).isEmpty()) {
+                    .filter(c -> c.isAngryAt(event.getEntityLiving())).isEmpty()) {
                     event.setCanceled(true);
                 }
             }
@@ -46,7 +46,7 @@ public class AntPheromoneEffect extends MobEffect {
 
         // Ant-like mobs attack the player's target when idle
         @SubscribeEvent
-        public static void onTick(LivingEvent.LivingTickEvent event) {
+        public static void onTick(LivingEvent.LivingUpdateEvent event) {
             if (event.getEntity() instanceof Mob mob    // For mobs
                 && mob.getType().is(NFFGirlsGaiaTags.ANT_PHEROMONE_AFFECTED)    // with tag
                 && mob.getTarget() == null)  // when idle
