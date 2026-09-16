@@ -12,6 +12,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEffects;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaTags;
+import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
+import net.sodiumzh.nfu.registry.NFUEntityComponents;
 /*import net.sodiumzh.nfu.entity.component.EntityComponentAPI;
 import net.sodiumzh.nfu.registry.NFUEntityComponents;*/
 
