@@ -44,4 +44,8 @@ public class NFFGirlsGaiaTamingProcesses {
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_SIREN = TAMING_PROCESSES.register(
         "gaia_siren", () -> new GaiaSirenFriendingProcess().setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.HUMANOID_A));
+
+    public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_SLUDGE_GIRL = TAMING_PROCESSES.register(
+        "gaia_sludge_girl", GaiaSludgeGirlFriendingProcess::new);
+
 }

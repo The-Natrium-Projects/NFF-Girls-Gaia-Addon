@@ -33,6 +33,7 @@ public class NFFGirlsGaiaHealingItemMappings {
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_ANT_WORKER.get(), NFFGirlsGaiaHealingItems.ARTHROPOD);
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_ARACHNE.get(), NFFGirlsGaiaHealingItems.ARTHROPOD);
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), NFFGirlsHealingItems.ENDERMAN);
+            NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_SLUDGE_GIRL.get(), NFFGirlsHealingItems.SLIME);
         });
     }
 

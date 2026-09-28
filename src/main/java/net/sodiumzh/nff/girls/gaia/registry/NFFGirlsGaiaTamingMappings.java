@@ -93,5 +93,10 @@ public class NFFGirlsGaiaTamingMappings
             new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_arachne"),
             NFFGirlsGaiaTamingProcesses.GAIA_ARACHNE
         );
+        event.register(
+            new ResourceLocation(GrimoireOfGaia.MOD_ID, "sludge_girl"),
+            new ResourceLocation(GrimoireOfGaia.MOD_ID, "gaia_sludge_girl"),
+            NFFGirlsGaiaTamingProcesses.GAIA_SLUDGE_GIRL
+        );
 	}
 }

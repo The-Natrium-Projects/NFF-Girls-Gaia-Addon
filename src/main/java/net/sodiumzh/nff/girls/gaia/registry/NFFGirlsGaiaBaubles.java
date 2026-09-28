@@ -34,5 +34,6 @@ public class NFFGirlsGaiaBaubles
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaSirenEntity.class, 6, 7);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaAntWorkerEntity.class, 2, 4);
         NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaArachneEntity.class, 2, 4);
+        NFFGirlsBaubles.registerWithContinuousSlotSequence(event, GaiaSludgeGirlEntity.class, 0, 4);
     }
 }

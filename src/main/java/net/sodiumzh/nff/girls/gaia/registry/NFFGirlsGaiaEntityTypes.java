@@ -85,6 +85,9 @@ public class NFFGirlsGaiaEntityTypes extends NFFGirlsEntityTypes
     public static final RegistryObject<EntityType<GaiaSirenEntity>> GAIA_SIREN =
             registerBM("gaia_siren", GaiaSirenEntity::new);
 
+    public static final RegistryObject<EntityType<GaiaSludgeGirlEntity>> GAIA_SLUDGE_GIRL =
+            registerBM("gaia_sludge_girl", GaiaSludgeGirlEntity::new);
+
     // Technical entities
 
 	// Register utilities
