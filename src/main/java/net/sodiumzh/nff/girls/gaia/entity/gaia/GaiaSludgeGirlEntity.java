@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
+import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaAiGoalGroups;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsHandItemsFourBaublesDefaultInventoryMenu;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsSixBaublesInventoryMenu;
@@ -43,22 +44,7 @@ public class GaiaSludgeGirlEntity extends SludgeGirl implements INFFGirlsTamed {
 
     @Override
     protected void registerGoals() {
-        goalSelector.addGoal(1, new FloatGoal(this));
-        goalSelector.addGoal(2, new NFFLeapAtTargetGoal(this, 0.39F, 0.45F, 32.0F, 24));
-        goalSelector.addGoal(3, new NFFMeleeAttackGoal(this, 1.0d, true));
-        goalSelector.addGoal(4, new NFFLeapAtOwnerGoal(this, 0.39F, 0.45F, 32.0F, 24));
-        goalSelector.addGoal(5, new NFFGirlsFollowOwnerGoal(this, 1.0d, 5.0f, 2.0f, false));
-        goalSelector.addGoal(6, new NFFWaterAvoidingRandomStrollGoal(this, 1.0d));
-        goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        targetSelector.addGoal(1, new NFFGirlsOwnerHurtByTargetGoal(this));
-        targetSelector.addGoal(2, new NFFHurtByTargetGoal(this));
-        targetSelector.addGoal(3, new NFFGirlsOwnerHurtTargetGoal(this));
-        targetSelector.addGoal(5, new NFFGirlsNearestHostileToSelfTargetGoal(this));
-        targetSelector.addGoal(6, new NFFGirlsNearestHostileToOwnerTargetGoal(this));
-        targetSelector.addGoal(7, new NFFGirlsNearestPotentiallyHostileToSelfTargetGoal(this));
-        targetSelector.addGoal(8, new NFFGirlsNearestPotentiallyHostileToOwnerTargetGoal(this));
-        targetSelector.addGoal(9, new NFFGirlsAttackingStrategyTargetGoal(this));
+        NFFGirlsGaiaAiGoalGroups.COMMON_MELEE.addTo(this, 0);
     }
 
 }
