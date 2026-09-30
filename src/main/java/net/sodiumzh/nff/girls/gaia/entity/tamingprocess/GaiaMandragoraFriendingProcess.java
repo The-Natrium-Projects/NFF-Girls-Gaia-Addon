@@ -69,6 +69,9 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
                 // If the player is too far away (8 blocks), interrupt
                 if (ongoing.distanceToSqr(mob) > 144d)
                     this.interrupt(ongoing, mob, true);
+                // Prevent cheat by boat/minecart
+                if (mob.isPassenger())
+                    this.interrupt(ongoing, mob, true);
                 else {
                     // Succeed if the player has been 100 blocks away from the starting point
                     Vec3 vec2Start = mob.position().subtract(this.getStartingPoint(mob));
@@ -84,6 +87,7 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
     public void interrupt(Player player, Mob mob, boolean b) {
         if (this.getOngoingPlayer(mob) == player) {
             this.setOngoingPlayer(mob, null);
+            mob.setTarget(null);
         }
     }
 
@@ -91,6 +95,7 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
     public boolean interruptAll(Mob mob, boolean b) {
         boolean isOngoing = this.isInAnyProcess(mob);
         this.setOngoingPlayer(mob, null);
+        mob.setTarget(null);
         return isOngoing;
     }
 
