@@ -177,7 +177,7 @@ public class GaiaArachneEntity extends Arachne implements INFFGirlsTamed, IBlock
     @Override
     protected void beaconMonster(int range, Consumer<LivingEntity> action) {
         super.beaconMonster(range, living -> {
-            if (this.isAllyTo(living))
+            if (this.isTamedAlliedTo(living))
                 action.accept(living);
         });
     }

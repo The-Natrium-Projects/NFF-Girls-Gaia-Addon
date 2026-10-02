@@ -246,7 +246,7 @@ public class NFFGirlsGaiaEntityEventListeners
 	public static void onLivingHurt(LivingHurtEvent event) {
 		// Cancel explosion damages
 		if ((event.getSource().is(DamageTypes.EXPLOSION) || event.getSource().is(DamageTypes.PLAYER_EXPLOSION))
-			&& INFFTamed.get(event.getSource().getEntity()).filter(t -> NFFTamedStatics.isLivingAlliedToBM(t, event.getEntity())).isPresent())
+			&& INFFTamed.get(event.getSource().getEntity()).filter(t -> t.isTamedAlliedTo(event.getEntity())).isPresent())
 		{
 			if (event.getSource().getEntity().getType().equals(NFFGirlsGaiaEntityTypes.GAIA_VALKYRIE.get()))
 				event.setCanceled(true);

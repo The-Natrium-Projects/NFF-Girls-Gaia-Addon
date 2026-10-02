@@ -110,7 +110,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setLifetime(10 * 20)
             .setGravity(0f)
             .setOnServerLivingOverlap((z, l) -> {
-                if (!l.equals(z.getOwner()) && INFFTamed.get(z.getOwner()).filter(t -> t.isAllyTo(l)).isEmpty()) {
+                if (!l.equals(z.getOwner()) && INFFTamed.get(z.getOwner()).filter(t -> t.isTamedAlliedTo(l)).isEmpty()) {
                     if (l.tickCount % 5 == 0) {
                         l.hurt(new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FREEZE),
                             z, z.getOwner(), l.position()),
@@ -167,7 +167,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setGravity(0.01f)
             .setOnHitLiving((proj, h) -> {
                 if (h.getEntity() instanceof LivingEntity l
-                    && INFFTamed.get(owner).filter(t -> NFFTamedStatics.isLivingAlliedToBM(t, l)).isEmpty())
+                    && INFFTamed.get(owner).filter(t -> t.isTamedAlliedTo(l)).isEmpty())
                 {
                     l.hurt(new DamageSource(owner.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.INDIRECT_MAGIC),
                         proj, owner, proj.position()), 3f + (float)(owner.getAttribute(Attributes.ATTACK_DAMAGE).getValue()) * 0.5f);
@@ -194,7 +194,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .particle(ParticleTypes.BUBBLE, 100)
             .particleAreaShape(IInequalityPattern3D.SPHERE.get().inequality())
             .setOnServerLivingOverlap((z, l) -> {
-                if (INFFTamed.get(owner).filter(t -> NFFTamedStatics.isLivingAlliedToBM(t, l)).isEmpty()
+                if (INFFTamed.get(owner).filter(t -> t.isTamedAlliedTo(l)).isEmpty()
                     && z.getBoundingBox().getCenter().distanceToSqr(l.getEyePosition()) <= 4d)
                 {
                     if (z.tickCount % 5 == 1) {
@@ -321,12 +321,12 @@ public class NFFGirlsGaiaProjectileProviders {
             .particle(ParticleTypes.SMOKE, 10)
             .setLiquidResistanceFactor(0.2f)
             .setAirResistanceFactor(0.01f)
-            .setHitIgnoresLiving((proj, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElse(null), l))
+            .setHitIgnoresLiving((proj, l) -> INFFTamed.get(proj.getOwner()).filter(t -> t.isTamedAlliedTo(l)).isPresent())
             .setOnHitBlockOrLiving((proj, h) -> {
                 // Prevent lightning if an ally is within 3 blocks
                 if (proj.level().getEntitiesOfClass(LivingEntity.class,
                     proj.getBoundingBox().inflate(3d),
-                    l -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(proj.getOwner()).orElse(null), l)).isEmpty())
+                    l -> INFFTamed.get(proj.getOwner()).filter(t -> t.isTamedAlliedTo(l)).isPresent()).isEmpty())
                 {
                     LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, proj.level());
                     lightningBolt.setPos(proj.position());
@@ -353,7 +353,7 @@ public class NFFGirlsGaiaProjectileProviders {
                 if (h instanceof EntityHitResult eh && !(eh.getEntity() instanceof LivingEntity)) return;
                 var iceZone = VALKYRIE_ICE_ZONE.apply(owner);
                 iceZone.alignCenterTo(proj.position());
-                iceZone.setLivingOverlapFilter((z, l) -> NFFTamedStatics.isLivingAlliedToBM(INFFTamed.get(z.getOwner()).orElse(null), l));
+                iceZone.setLivingOverlapFilter((z, l) -> INFFTamed.get(z.getOwner()).filter(t -> t.isTamedAlliedTo(l)).isPresent());
                 proj.level().addFreshEntity(iceZone);
                 proj.discard();
             });
@@ -387,7 +387,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setOnHitLiving((proj, ehs) -> {
                 INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
                 if (tamed == null) { proj.discard(); return; }
-                if (ehs.getEntity() instanceof LivingEntity living && !NFFTamedStatics.isLivingAlliedToBM(tamed, living)) {
+                if (ehs.getEntity() instanceof LivingEntity living && !tamed.isTamedAlliedTo(living)) {
                     living.hurt(proj.damageSources().indirectMagic(proj, owner),
                         (float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2f);
                     int amplifier = (int) Math.round(owner.getAttributeValue(NFFGirlsEntityAttributes.POISON_ASPECT.get()));
@@ -408,7 +408,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setOnHitLiving((proj, ehs) -> {
                 INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
                 if (tamed == null) { proj.discard(); return; }
-                if (ehs.getEntity() instanceof LivingEntity living && tamed.isAllyTo(living)) {
+                if (ehs.getEntity() instanceof LivingEntity living && tamed.isTamedAlliedTo(living)) {
                     living.addEffect(new MobEffectInstance(NFFGirlsGaiaEffects.ANT_PHEROMONE.get(), 5 * 60 * 20));
                     living.playSound(SoundEvents.ENCHANTMENT_TABLE_USE);
                     NFUParticleStatics.sendGlintParticlesToEntityDefault(living);
@@ -447,7 +447,7 @@ public class NFFGirlsGaiaProjectileProviders {
             .setOnHitLiving((proj, ehs) -> {
                 INFFGirlsTamed tamed = INFFGirlsTamed.get(owner).orElse(null);
                 if (tamed == null) { proj.discard(); return; }
-                if (ehs.getEntity() instanceof LivingEntity living && !tamed.isAllyTo(living)) {
+                if (ehs.getEntity() instanceof LivingEntity living && !tamed.isTamedAlliedTo(living)) {
                     living.hurt(living.level().damageSources().indirectMagic(proj, owner),
                         (float) owner.getAttributeValue(Attributes.ATTACK_DAMAGE) / 2f);
                     BlockPos pos = NFUMathStatics.getBlockPos(living.getBoundingBox().getCenter());

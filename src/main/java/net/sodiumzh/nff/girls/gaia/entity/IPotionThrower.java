@@ -53,7 +53,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
 
         NFFSafeThrownPotionEntity thrownpotion = new NFFSafeThrownPotionEntity(this.asMob().level(), this.asMob())
             .setIntendedTarget(target)
-            .setTargetType(isAttackingEnemy ? INFFSafeTarget.TargetType.NONE_ALLY : INFFSafeTarget.TargetType.ALLY)
+            .setTargetType(isAttackingEnemy ? INFFSafeTarget.TargetType.NON_ALLY : INFFSafeTarget.TargetType.ALLY)
             .setEffectOverride(List.of(effectAndPotion.getA()))
             .setRevertsEffectForUndead(true);
         thrownpotion.setItem(PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), effectAndPotion.getB()));
@@ -174,7 +174,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
     public default Optional<LivingEntity> getTargetingAlly() {
         List<LivingEntity> allies = this.asMob().level()
             .getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8, 8, 8), e -> {
-                if (!NFFTamedStatics.isLivingAlliedToBM(this, e)) return false;
+                if (!this.isTamedAlliedTo(e)) return false;
                 if (this.asMob().distanceToSqr(e) > 64d) return false;
                 if (!this.asMob().hasLineOfSight(e)) return false;
                 return true;
@@ -186,7 +186,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
     public default Optional<LivingEntity> getAllyInEmergency() {
         List<LivingEntity> allies = this.asMob().level()
             .getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8, 8, 8), e -> {
-                if (!NFFTamedStatics.isLivingAlliedToBM(this, e)) return false;
+                if (!this.isTamedAlliedTo(e)) return false;
                 if (this.asMob().distanceToSqr(e) > 64d) return false;
                 if (!this.asMob().hasLineOfSight(e)) return false;
                 return !IPotionThrower.getEmergency(e).equals(Emergency.NONE);
@@ -202,7 +202,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
     public default Optional<LivingEntity> getIdleHealingAlly() {
         List<LivingEntity> allies = this.asMob().level()
             .getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8, 8, 8), e -> {
-                if (!NFFTamedStatics.isLivingAlliedToBM(this, e)) return false;
+                if (!this.isTamedAlliedTo(e)) return false;
                 if (this.asMob().distanceToSqr(e) > 64d) return false;
                 if (!this.asMob().hasLineOfSight(e)) return false;
                 return e.getHealth() < e.getMaxHealth();
@@ -216,7 +216,7 @@ public interface IPotionThrower extends INFFGirlsTamed {
 
     public default boolean isInCombat() {
         return this.asMob().level().getEntitiesOfClass(LivingEntity.class, this.asMob().getBoundingBox().inflate(8d, 8d, 8d),
-                e -> NFFTamedStatics.isLivingAlliedToBM(this, e))
+                this::isTamedAlliedTo)
             .stream()
             .filter(e -> this.asMob().distanceToSqr(e) <= 64d)
             .filter(e -> e.getLastHurtByMob() != null || e.getLastHurtMob() != null || (e instanceof Mob mob && mob.getTarget() != null))

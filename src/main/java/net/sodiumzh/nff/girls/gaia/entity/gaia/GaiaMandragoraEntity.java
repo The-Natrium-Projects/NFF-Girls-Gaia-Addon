@@ -60,7 +60,7 @@ public class GaiaMandragoraEntity extends Mandragora implements INFFGirlsTamed {
         this.setIsScreaming(this.getTarget() != null);
         if (this.isScreaming()) {
             this.doBeaconMonster(getDebuffRange(), (living) -> {
-                if (living instanceof Mob mob && this.isAllyTo(mob.getTarget())) {
+                if (living instanceof Mob mob && this.isTamedAlliedTo(mob.getTarget())) {
                     int xpLevel = this.getXpLevel();
                     living.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 99, 0, true, true));
                     if (xpLevel >= 10)
