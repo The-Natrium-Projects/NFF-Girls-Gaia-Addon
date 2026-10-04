@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaAiGoalGroups;
+import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import org.jetbrains.annotations.Nullable;
@@ -25,12 +26,12 @@ public class GaiaMandragoraEntity extends Mandragora implements INFFGirlsTamed {
 
     @Override
     public @Nullable NFFTamedMobInventory createAdditionalInventory() {
-        return null;
+        return new NFFTamedMobInventory(4, this);
     }
 
     @Override
     public @Nullable NFFTamedInventoryMenu makeMenu(int i, Inventory inventory, Container container) {
-        return null;
+        return new NFFGirlsFourBaublesInventoryMenu(i, inventory, container, this);
     }
 
     @Override

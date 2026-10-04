@@ -229,6 +229,17 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
             .add(Attributes.ATTACK_KNOCKBACK, 0.3d)
             .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0d));
 
+    public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_MANDRAGORA = ENTITY_ATTRIBUTE_PROVIDERS.register(
+        "gaia_mandragora", () -> EntityAttributeProvider.from(NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get())
+            .add(Attributes.MAX_HEALTH, 40.0d)
+            .add(Attributes.FOLLOW_RANGE, 40.0d)
+            .add(Attributes.MOVEMENT_SPEED, 0.2)
+            .add(Attributes.ATTACK_DAMAGE, 4.0d)
+            .add(Attributes.ARMOR, 4.0d)
+            .add(Attributes.ATTACK_KNOCKBACK, 0.3d)
+            .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0d));
+
+
     @SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
 		event.put(NFFGirlsGaiaEntityTypes.GAIA_DRYAD.get(), NFFGirlsGaiaEntityAttributes.GAIA_DRYAD.get().get().build());
@@ -251,6 +262,7 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
         event.put(NFFGirlsGaiaEntityTypes.GAIA_ARACHNE.get(), NFFGirlsGaiaEntityAttributes.GAIA_ARACHNE.get().get().build());
         event.put(NFFGirlsGaiaEntityTypes.GAIA_SIREN.get(), NFFGirlsGaiaEntityAttributes.GAIA_SIREN.get().get().build());
         event.put(NFFGirlsGaiaEntityTypes.GAIA_SLUDGE_GIRL.get(), NFFGirlsGaiaEntityAttributes.GAIA_SLUDGE_GIRL.get().get().build());
+        event.put(NFFGirlsGaiaEntityTypes.GAIA_MANDRAGORA.get(), NFFGirlsGaiaEntityAttributes.GAIA_MANDRAGORA.get().get().build());
     }
 
 }

@@ -98,5 +98,10 @@ public class NFFGirlsGaiaTamingMappings
             new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_sludge_girl"),
             NFFGirlsGaiaTamingProcesses.GAIA_SLUDGE_GIRL
         );
+        event.register(
+            new ResourceLocation(GrimoireOfGaia.MOD_ID, "mandragora"),
+            new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_mandragora"),
+            NFFGirlsGaiaTamingProcesses.G
+        );
 	}
 }

@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingProcess;
+import net.sodiumzh.nfu.entity.anger.MobAngerRules;
 import net.sodiumzh.nfu.entity.taming.TamingInteractionResult;
 import net.sodiumzh.nfu.network.NFUDataSerializers;
 import net.sodiumzh.nfu.util.NFUMathStatics;
@@ -29,6 +30,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
+
+    public GaiaMandragoraFriendingProcess() {
+        super();
+        this.setAngerRules(MobAngerRules.NO_ANGER.get());
+        this.setInterruptionRules(MobAngerRules.NO_ANGER.get());
+    }
 
     @Override
     public void tamableInit(NFFTamableComponent nffTamableComponent) {
@@ -163,4 +170,5 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
             }
         }
     }
+
 }

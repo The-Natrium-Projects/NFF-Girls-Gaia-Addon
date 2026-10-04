@@ -39,5 +39,6 @@ public class NFFGirlsGaiaClientSetupEventHandlers
         event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_ANT_WORKER.get(), AntWorkerRenderer::new);
         event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_ARACHNE.get(), ArachneRenderer::new);
         event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SLUDGE_GIRL.get(), SludgeGirlRenderer::new);
+        event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_MANDRAGORA.get(), MandragoraRenderer::new);
 	}
 }
