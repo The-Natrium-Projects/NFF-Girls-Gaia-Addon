@@ -1,0 +1,24 @@
+{
+  "category": "nffgirls:friending_gaia",
+  "name": "entity.grimoireofgaia.mandragora",
+  "icon": "nffgirlsgaia:textures/book/icon_mandragora.png",
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "grimoireofgaia:mandragora",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.mandragora"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.mandragora_1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.mandragora_1"
+    }
+  ]
+}

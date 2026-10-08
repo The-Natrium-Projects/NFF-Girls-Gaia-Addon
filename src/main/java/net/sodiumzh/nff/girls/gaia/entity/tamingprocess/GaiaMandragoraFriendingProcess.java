@@ -3,6 +3,7 @@ package net.sodiumzh.nff.girls.gaia.entity.tamingprocess;
 import gaia.entity.Mandragora;
 import gaia.entity.prop.CyanFlower;
 import gaia.registry.GaiaRegistry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,6 +20,7 @@ import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
 import net.sodiumzh.nff.services.entity.taming.NFFTamingProcess;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
 import net.sodiumzh.nfu.entity.taming.TamingInteractionResult;
+import net.sodiumzh.nfu.network.NFUDataSerializer;
 import net.sodiumzh.nfu.network.NFUDataSerializers;
 import net.sodiumzh.nfu.util.NFUMathStatics;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
@@ -28,6 +30,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
@@ -80,8 +83,10 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
                 // If the player is too far away (8 blocks), interrupt
                 if (ongoing.distanceToSqr(mob) > 144d)
                     this.interrupt(ongoing, mob, true);
-                // Prevent cheat by boat/minecart
+                // Prevent cheat by boat/minecart/nether
                 if (mob.isPassenger())
+                    this.interrupt(ongoing, mob, true);
+                if (!mob.level().dimension().location().equals(this.getStartingDimensionKey(mob).orElse(null)))
                     this.interrupt(ongoing, mob, true);
                 else {
                     // Succeed if the player has been 100 blocks away from the starting point
@@ -131,6 +136,16 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
             .ifPresent(c -> c.getDataComponent().putPermanentVariable("startingPoint", v, NFUDataSerializers.VEC3.get()));
     }
 
+    private Optional<ResourceLocation> getStartingDimensionKey(Mob mob) {
+        return NFFTamableComponent.getOptional(mob)
+            .flatMap(c -> c.getDataComponent().getVariable("dimension", ResourceLocation.class));
+    }
+
+    private void setStartingDimension(Mob mob, @Nullable ResourceLocation dimensionKey) {
+        NFFTamableComponent.getOptional(mob)
+            .ifPresent(c -> c.getDataComponent().putPermanentVariable("dimension", dimensionKey, NFUDataSerializers.RESOURCE_LOCATION.get()));
+    }
+
     @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class EventListeners {
 
@@ -146,6 +161,7 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
                     .ifPresent(p -> {
                         p.setOngoingPlayer(mob, attackerPlayer);
                         p.setStartingPoint(mob, mob.position());
+                        p.setStartingDimension(mob, mob.level().dimension().location());
                     });
             }
         }
@@ -169,6 +185,7 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
                         .ifPresent(p -> {
                             p.setOngoingPlayer(mob, closest);
                             p.setStartingPoint(mob, mob.position());
+                            p.setStartingDimension(mob, mob.level().dimension().location());
                         });
                 }
             }

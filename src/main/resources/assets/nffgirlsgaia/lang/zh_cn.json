@@ -81,6 +81,12 @@
   "dict.nffgirlsgaia.desc.friending.yuki_onna": "要与雪女变得友好，你需要在承受恐怖暴风雪的同时给予物品。雪女身边环绕的暴风雪能使其中的任何生物受到高等级的缓慢效果，并持续受到伤害，而且可以严重阻挡你的视野。所以，在踏入暴风雪之前，要做好万全的准备。",
   "dict.nffgirlsgaia.desc.friending.yuki_onna_1": "在友好化后，如果装备扇子，雪女将能够施放强力的暴风雪魔法攻击。",
 
+  "dict.nffgirlsgaia.desc.friending.sludge_girl": "使污泥女孩友好的方法和HMaG史莱姆娘类似，但颜色固定为(R127, G255, B127). 你也可以给与13-25个魔法粘液球代替。",
+
+  "dict.nffgirlsgaia.desc.friending.mandragora": "要使曼陀罗草变得友好，你需要在承受负面效果的同时将其拉远。用锄攻击可将其挖出，在这之后你将体验到曼陀罗草尖叫的真正威力，获得固定的黑暗I、中毒I和缓慢I效果，同时还有反胃。你需要将其从挖出来的位置拉到100格以外。",
+  "dict.nffgirlsgaia.desc.friending.mandragora_1": "在这个过程中，你必须一直带有反胃效果。注意，你需要距离曼陀罗草2格以内才会被付与反胃。另外，绝不能将其推到矿车上、船上或推进另一个维度。",
+  "dict.nffgirlsgaia.desc.friending.mandragora_2": "在友好之后，曼陀罗草不会再给你负面效果。战斗中，曼陀罗草可以付与周围敌对生物负面效果；当等级提升后，负面效果将变得更强。",
+
   "dict.nffgirlsgaia.desc.effect.ant_pheromone": "由友好化的工兵蚁付与。蚂蚁类生物会拥有此效果的玩家/生物中立。(实体标签： \"nffgirlsgaia:ant_pheromone_affected\")",
   "dict.nffgirlsgaia.desc.effect.cobweb_affinity": "由友好化的阿拉克涅付与。拥有此效果时不会被蛛网粘住。"
 }

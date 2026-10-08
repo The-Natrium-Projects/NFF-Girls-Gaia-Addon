@@ -19,6 +19,10 @@
     {
       "type": "patchouli:text",
       "text": "dict.nffgirlsgaia.desc.friending.witch_2"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "dict.nffgirlsgaia.desc.friending.witch_3"
     }
   ]
 }
