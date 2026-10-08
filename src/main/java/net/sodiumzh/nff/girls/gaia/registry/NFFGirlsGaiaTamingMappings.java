@@ -101,7 +101,17 @@ public class NFFGirlsGaiaTamingMappings
         event.register(
             new ResourceLocation(GrimoireOfGaia.MOD_ID, "mandragora"),
             new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_mandragora"),
-            NFFGirlsGaiaTamingProcesses.G
+            NFFGirlsGaiaTamingProcesses.GAIA_MANDRAGORA
+        );
+        event.register(
+            new ResourceLocation(GrimoireOfGaia.MOD_ID, "centaur"),
+            new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_centaur"),
+            NFFGirlsGaiaTamingProcesses.GAIA_CENTAUR
+        );
+        event.register(
+            new ResourceLocation(GrimoireOfGaia.MOD_ID, "satyress"),
+            new ResourceLocation(NFFGirlsGaia.MOD_ID, "gaia_satyress"),
+            NFFGirlsGaiaTamingProcesses.GAIA_CENTAUR
         );
 	}
 }

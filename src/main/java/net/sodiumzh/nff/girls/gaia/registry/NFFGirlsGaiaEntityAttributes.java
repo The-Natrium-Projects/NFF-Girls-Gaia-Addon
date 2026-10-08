@@ -239,6 +239,25 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
             .add(Attributes.ATTACK_KNOCKBACK, 0.3d)
             .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0d));
 
+    public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_CENTAUR = ENTITY_ATTRIBUTE_PROVIDERS.register(
+        "gaia_centaur", () -> EntityAttributeProvider.from(NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get())
+            .add(Attributes.MAX_HEALTH, 40.0D)
+            .add(Attributes.FOLLOW_RANGE, 26.0D)
+            .add(Attributes.MOVEMENT_SPEED, 0.25D)
+            .add(Attributes.ATTACK_DAMAGE, 4.0D)
+            .add(Attributes.ARMOR, 4.0D)
+            .add(Attributes.ATTACK_KNOCKBACK, 0.3D)
+            .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0D));
+
+    public static final NFURegistry.Accessor<EntityAttributeProvider> GAIA_SATYRESS = ENTITY_ATTRIBUTE_PROVIDERS.register(
+        "gaia_satyress", () -> EntityAttributeProvider.from(NFFGirlsEntityAttributeProviders.NFFGIRLS_DEFAULT_ATTRIBUTES.get())
+            .add(Attributes.MAX_HEALTH, 40.0D)
+            .add(Attributes.FOLLOW_RANGE, 40.0D)
+            .add(Attributes.MOVEMENT_SPEED, 0.25D)
+            .add(Attributes.ATTACK_DAMAGE, 4.0D)
+            .add(Attributes.ARMOR, 4.0D)
+            .add(Attributes.ATTACK_KNOCKBACK, 0.3D)
+            .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.0D));
 
     @SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
@@ -263,6 +282,8 @@ public class NFFGirlsGaiaEntityAttributes extends NFFGirlsEntityAttributes
         event.put(NFFGirlsGaiaEntityTypes.GAIA_SIREN.get(), NFFGirlsGaiaEntityAttributes.GAIA_SIREN.get().get().build());
         event.put(NFFGirlsGaiaEntityTypes.GAIA_SLUDGE_GIRL.get(), NFFGirlsGaiaEntityAttributes.GAIA_SLUDGE_GIRL.get().get().build());
         event.put(NFFGirlsGaiaEntityTypes.GAIA_MANDRAGORA.get(), NFFGirlsGaiaEntityAttributes.GAIA_MANDRAGORA.get().get().build());
+        event.put(NFFGirlsGaiaEntityTypes.GAIA_CENTAUR.get(), NFFGirlsGaiaEntityAttributes.GAIA_CENTAUR.get().get().build());
+        event.put(NFFGirlsGaiaEntityTypes.GAIA_SATYRESS.get(), NFFGirlsGaiaEntityAttributes.GAIA_SATYRESS.get().get().build());
     }
 
 }

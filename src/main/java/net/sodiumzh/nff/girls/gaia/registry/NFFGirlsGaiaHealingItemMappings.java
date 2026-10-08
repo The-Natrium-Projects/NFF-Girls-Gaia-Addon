@@ -3,6 +3,7 @@ package net.sodiumzh.nff.girls.gaia.registry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.sodiumzh.nff.girls.NFFGirls;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItemMappings;
 import net.sodiumzh.nff.girls.registry.NFFGirlsHealingItems;
@@ -34,6 +35,9 @@ public class NFFGirlsGaiaHealingItemMappings {
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_ARACHNE.get(), NFFGirlsGaiaHealingItems.ARTHROPOD);
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_ENDER_DRAGON_GIRL.get(), NFFGirlsHealingItems.ENDERMAN);
             NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_SLUDGE_GIRL.get(), NFFGirlsHealingItems.SLIME);
+            NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_MANDRAGORA.get(), NFFGirlsHealingItems.PLANT);
+            NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_CENTAUR.get(), NFFGirlsHealingItems.GENERAL_HUMANOID_0);
+            NFFGirlsHealingItemMappings.getTable().put(NFFGirlsGaiaEntityTypes.GAIA_SATYRESS.get(), NFFGirlsHealingItems.GENERAL_HUMANOID_0);
         });
     }
 

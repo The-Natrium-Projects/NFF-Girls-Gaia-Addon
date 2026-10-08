@@ -27,6 +27,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
+import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.entity.tamingprocess.GaiaYukiOnnaTamingProcess;
 import net.sodiumzh.nff.girls.registry.NFFGirlsEntityAttributes;
 import net.sodiumzh.nff.girls.registry.NFFGirlsTags;
@@ -42,6 +43,7 @@ import net.sodiumzh.nfu.math.IInequalityPattern3D;
 import net.sodiumzh.nfu.math.Inequality3D;
 import net.sodiumzh.nfu.util.NFUMathStatics;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
+import net.sodiumzh.nfu.util.NFUResourceLocation;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -107,6 +109,7 @@ public class NFFGirlsGaiaProjectileProviders {
     public static final Function<LivingEntity, NFUEffectZoneEntity> YUKI_ONNA_SNOW_EFFECT_FRIENDED = owner ->
         NFUEffectZoneEntity.create(owner).setScale(6d, 6d)
             .particle(ParticleTypes.SNOWFLAKE, 100)
+            .setIdentifier(NFUResourceLocation.of(NFFGirlsGaia.MOD_ID, "aquatic_effect_vortex"))
             .setLifetime(10 * 20)
             .setGravity(0f)
             .setOnServerLivingOverlap((z, l) -> {

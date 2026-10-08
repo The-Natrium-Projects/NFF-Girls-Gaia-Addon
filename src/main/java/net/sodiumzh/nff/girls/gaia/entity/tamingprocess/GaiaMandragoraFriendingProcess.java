@@ -4,6 +4,7 @@ import gaia.entity.Mandragora;
 import gaia.entity.prop.CyanFlower;
 import gaia.registry.GaiaRegistry;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -53,7 +54,7 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
     public void setOngoingPlayer(@Nonnull Mob mob, @Nullable Player player) {
         NFFTamableComponent.getOptional(mob)
             .ifPresent(c -> c.getDataComponent()
-                .putPermanentVariable("ongoingPlayer", player != null ? player.getUUID() : new UUID(0L, 0L), NFUDataSerializers.UUID));
+                .putPermanentVariable("ongoingPlayer", player != null ? player.getUUID() : new UUID(0L, 0L), NFUDataSerializers.UUID.get()));
     }
 
     @Override
@@ -67,9 +68,12 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
             @Nullable Player ongoing = this.getOngoingPlayer(mob);
             c.setAlwaysHostileTo(this.getOngoingPlayer(mob));
             if (ongoing != null) {
+                // Add additional debuffs
+                ongoing.addEffect(new MobEffectInstance(MobEffects.POISON, 40));
+                ongoing.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40));
+                ongoing.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 40));
                 // Emit smoke particles to indicate if in process
-                if (mob.tickCount % 5 == 0)
-                    NFUParticleStatics.sendSmokeParticlesToEntityDefault(mob);
+                NFUParticleStatics.sendSmokeParticlesToEntityDefault(mob);
                 // If the player is not in nausea effect, interrupt
                 if (!ongoing.hasEffect(MobEffects.CONFUSION))
                     this.interrupt(ongoing, mob, true);
@@ -124,7 +128,7 @@ public class GaiaMandragoraFriendingProcess extends NFFTamingProcess {
 
     private void setStartingPoint(Mob mob, @Nonnull Vec3 v) {
         NFFTamableComponent.getOptional(mob)
-            .ifPresent(c -> c.getDataComponent().putPermanentVariable("startingPoint", v, NFUDataSerializers.VEC3));
+            .ifPresent(c -> c.getDataComponent().putPermanentVariable("startingPoint", v, NFUDataSerializers.VEC3.get()));
     }
 
     @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)

@@ -50,12 +50,14 @@ import net.sodiumzh.nfu.exception.ReflectionFailedException;
 import net.sodiumzh.nfu.mixin.event.entity.ItemEntityHurtEvent;
 import net.sodiumzh.nfu.mixin.event.entity.LivingStartBaseAiStepEvent;
 import net.sodiumzh.nfu.mixin.event.entity.MobRegisterGoalsEvent;
+import net.sodiumzh.nfu.reflection.CachedMethodSearchers;
 import net.sodiumzh.nfu.util.NFUAIStatics;
 import net.sodiumzh.nfu.util.NFUParticleStatics;
 import net.sodiumzh.nfu.util.NFUReflectionStatics;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -73,7 +75,16 @@ public class NFFGirlsGaiaEntityEventListeners
 		{
 			after.setBaby(before.isBaby());
 			after.setVariant(before.getVariant());
-			NFFGirlsGaiaEntityUtils.setMale(after, NFFGirlsGaiaEntityUtils.isMale(before));
+            // Set gender
+			Method genderGetter = CachedMethodSearchers.findDeclaredMethod(event.mobBefore.getClass(), "isMale").orElse(null);
+            Method genderSetter = CachedMethodSearchers.findDeclaredMethod(event.mobBefore.getClass(), "setMale", boolean.class).orElse(null);
+            if (genderSetter == null)
+                genderSetter = CachedMethodSearchers.findDeclaredMethod(event.mobBefriended.getClass(), "setMale", boolean.class).orElse(null);
+            if (genderGetter != null && genderSetter != null) {
+                boolean isMale = NFUReflectionStatics.invokeMethod(genderGetter, event.mobBefore).castTo(Boolean.class);
+                NFUReflectionStatics.invokeMethod(genderSetter, event.mobBefriended, isMale);
+            }
+            // Handle rare variant
 			if (after instanceof IHasRareVariant hasRV) {
 				int vid = hasRV.pickRareVariant();
 				IHasRareVariant.RareVariant v = hasRV.rareVariantByID(vid);

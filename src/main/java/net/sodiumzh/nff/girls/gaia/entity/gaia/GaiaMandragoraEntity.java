@@ -17,11 +17,15 @@ import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.function.Consumer;
 
 public class GaiaMandragoraEntity extends Mandragora implements INFFGirlsTamed {
     public GaiaMandragoraEntity(EntityType<? extends GaiaMandragoraEntity> entityType, Level level) {
         super(entityType, level);
+        this.xpReward = 0;
+        Arrays.fill(this.armorDropChances, 0);
+        Arrays.fill(this.handDropChances, 0);
     }
 
     @Override

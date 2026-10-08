@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.sodiumzh.nff.girls.entity.INFFGirlsTamed;
 import net.sodiumzh.nff.girls.entity.ai.goal.NFFGirlsFollowOwnerGoal;
 import net.sodiumzh.nff.girls.entity.ai.goal.target.*;
+import net.sodiumzh.nff.girls.inventory.NFFGirlsFourBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.inventory.NFFGirlsThreeBaublesInventoryMenu;
 import net.sodiumzh.nff.girls.sound.NFFGirlsSoundPresets;
 import net.sodiumzh.nff.services.entity.ai.goal.preset.NFFMeleeAttackGoal;
@@ -68,12 +69,12 @@ public class GaiaSprigganEntity extends Spriggan implements INFFGirlsTamed {
 
     @Override
     public NFFTamedMobInventory createAdditionalInventory() {
-        return new NFFTamedMobInventory(3, this);
+        return new NFFTamedMobInventory(4, this);
     }
 
     @Override
     public NFFTamedInventoryMenu makeMenu(int containerId, Inventory playerInventory, Container container) {
-        return new NFFGirlsThreeBaublesInventoryMenu(containerId, playerInventory, container, this);
+        return new NFFGirlsFourBaublesInventoryMenu(containerId, playerInventory, container, this);
     }
 
     /* Save and Load */

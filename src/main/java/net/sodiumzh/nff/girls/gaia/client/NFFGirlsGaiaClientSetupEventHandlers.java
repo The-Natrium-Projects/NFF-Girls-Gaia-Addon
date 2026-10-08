@@ -7,11 +7,14 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
+import net.sodiumzh.nff.girls.gaia.client.gui.NFFGirlsGaiaBowShootingGUI;
 import net.sodiumzh.nff.girls.gaia.client.renderer.NFFGirlsGaiaSirenRenderer;
 import net.sodiumzh.nff.girls.gaia.client.renderer.NFFGirlsGaiaSuccubusRenderer;
 import net.sodiumzh.nff.girls.gaia.client.renderer.NFFGirlsGaiaWerecatRenderer;
+import net.sodiumzh.nff.girls.gaia.inventory.NFFGirlsGaiaBowShootingInventoryMenu;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityAttributes;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaEntityTypes;
+import net.sodiumzh.nff.services.event.client.RegisterGUIScreenEvent;
 
 @Mod.EventBusSubscriber(modid = NFFGirlsGaia.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NFFGirlsGaiaClientSetupEventHandlers
@@ -40,5 +43,13 @@ public class NFFGirlsGaiaClientSetupEventHandlers
         event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_ARACHNE.get(), ArachneRenderer::new);
         event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SLUDGE_GIRL.get(), SludgeGirlRenderer::new);
         event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_MANDRAGORA.get(), MandragoraRenderer::new);
+        event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_CENTAUR.get(), CentaurRenderer::new);
+        event.registerEntityRenderer(NFFGirlsGaiaEntityTypes.GAIA_SATYRESS.get(), SatyressRenderer::new);
 	}
+
+    @SubscribeEvent
+    public static void registerGuiScreen(RegisterGUIScreenEvent event) {
+        event.registerDefault(NFFGirlsGaiaBowShootingInventoryMenu.class, NFFGirlsGaiaBowShootingGUI::new);
+    }
+
 }

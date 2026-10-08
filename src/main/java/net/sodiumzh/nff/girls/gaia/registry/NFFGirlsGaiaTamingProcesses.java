@@ -1,5 +1,6 @@
 package net.sodiumzh.nff.girls.gaia.registry;
 
+import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
 import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagAlrauneTamingProcess;
 import net.sodiumzh.nff.girls.entity.tamingprocess.hmag.HmagEnderExecutorTamingProcess;
 import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
@@ -38,6 +39,7 @@ public class NFFGirlsGaiaTamingProcesses {
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_AQUATIC_A = TAMING_PROCESSES.register(
         "gaia_aquatic_a", () -> new GaiaAquaticTamingProcess()
             .setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.AQUATIC_A)
+            .setItemGivingCooldownTicks(NFFGirlsTamingRules.COOLDOWN_MIDDLE)
             .setAngerAndInterruptionRules(NFFGirlsAngerRules.DEFAULT.get(), MobAngerRules.ATTACKER.get()));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_WITCH = TAMING_PROCESSES.register(
@@ -69,7 +71,13 @@ public class NFFGirlsGaiaTamingProcesses {
             .setAngerAndInterruptionRules(NFFGirlsAngerRules.DEFAULT.get(), MobAngerRules.ATTACKER.get()));
 
     public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_MANDRAGORA = TAMING_PROCESSES.register(
-        "gaia_sludge_girl", () -> new GaiaMandragoraFriendingProcess()
+        "gaia_mandragora", () -> new GaiaMandragoraFriendingProcess()
             .setAngerAndInterruptionRules(MobAngerRules.NO_ANGER.get()));
+
+    public static final NFURegistry.Accessor<NFFTamingProcess> GAIA_CENTAUR = TAMING_PROCESSES.register(
+        "gaia_centaur", () -> new GaiaAquaticTamingProcess()
+            .setItemGivingTableOverride(NFFGirlsGaiaFriendingItems.HUMANOID_A)
+            .setItemGivingCooldownTicks(NFFGirlsTamingRules.COOLDOWN_SHORT)
+            .setAngerAndInterruptionRules(NFFGirlsAngerRules.DEFAULT.get(), MobAngerRules.ATTACKER.get()));
 
 }

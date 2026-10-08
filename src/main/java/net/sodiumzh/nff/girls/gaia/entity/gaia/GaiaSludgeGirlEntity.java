@@ -26,10 +26,15 @@ import net.sodiumzh.nff.services.inventory.NFFTamedInventoryMenu;
 import net.sodiumzh.nff.services.inventory.NFFTamedMobInventory;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+
 public class GaiaSludgeGirlEntity extends SludgeGirl implements INFFGirlsTamed {
 
     public GaiaSludgeGirlEntity(EntityType<? extends GaiaSludgeGirlEntity> entityType, Level level) {
         super(entityType, level);
+        this.xpReward = 0;
+        Arrays.fill(this.armorDropChances, 0);
+        Arrays.fill(this.handDropChances, 0);
     }
 
     @Override

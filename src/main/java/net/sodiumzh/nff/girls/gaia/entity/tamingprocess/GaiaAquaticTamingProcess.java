@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.sodiumzh.nff.girls.entity.NFFGirlsTamingRules;
+import net.sodiumzh.nff.girls.gaia.NFFGirlsGaia;
 import net.sodiumzh.nff.girls.gaia.registry.NFFGirlsGaiaProjectileProviders;
 import net.sodiumzh.nff.girls.registry.NFFGirlsAngerRules;
 import net.sodiumzh.nff.services.entity.taming.NFFTamableComponent;
@@ -16,6 +17,7 @@ import net.sodiumzh.nff.services.entity.taming.TamingProcessItemGivingProgress;
 import net.sodiumzh.nfu.entity.NFUEffectZoneEntity;
 import net.sodiumzh.nfu.entity.anger.MobAngerRules;
 import net.sodiumzh.nfu.util.NFUMathStatics;
+import net.sodiumzh.nfu.util.NFUResourceLocation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +31,9 @@ public class GaiaAquaticTamingProcess extends TamingProcessItemGivingProgress {
     @Override
     public void onItemGiven(Player player, Mob mob, ItemStack itemGivenCopy, double procBefore, double procAfter) {
         super.onItemGiven(player, mob, itemGivenCopy, procBefore, procAfter);
-        this.summonVortex(mob, 7, true);
+        int existingVortexes = countVortexAround(mob);
+        this.summonVortex(mob, Math.min(6, 12 - existingVortexes), existingVortexes < 12);
         mob.swing(InteractionHand.MAIN_HAND);
-    }
-
-    @Override
-    public int getItemGivingCooldownTicks() {
-        return NFFGirlsTamingRules.COOLDOWN_MIDDLE;
     }
 
     @Override
@@ -43,19 +41,21 @@ public class GaiaAquaticTamingProcess extends TamingProcessItemGivingProgress {
     }
 
     @Override
-    public MobAngerRules getAngerRules() {
-        return NFFGirlsAngerRules.ATTACKER_AND_MINOR_HIT.get();
-    }
-
-    @Override
     public void serverTick(Mob mob) {
         if (this.getOngoingPlayer(mob).filter(mob::hasLineOfSight)
             .filter(p -> p.equals(mob.getTarget())).isPresent()) {
             if (mob.isInWaterOrRain() && mob.tickCount % 200 == 100)  {
-                summonVortex(mob, 4, false);
+                summonVortex(mob, Math.min(4, 12 - countVortexAround(mob)), false);
                 mob.swing(InteractionHand.MAIN_HAND);
             }
         }
+    }
+
+    private int countVortexAround(Mob mob) {
+        AABB countBB = mob.getBoundingBox().inflate(12d);
+        return mob.level().getEntitiesOfClass(NFUEffectZoneEntity.class, countBB, ez ->
+            ez.getIdentifier().equals(NFUResourceLocation.of(NFFGirlsGaia.MOD_ID, "aquatic_effect_vortex")))
+            .size();
     }
 
     private void summonVortex(Mob mob, int amount, boolean shouldSummonAtSelf) {

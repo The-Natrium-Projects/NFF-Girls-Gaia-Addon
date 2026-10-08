@@ -26,9 +26,9 @@ public class NFFGirlsGaia
         NFFGirlsGaiaEffects.EFFECTS.register(modEventBus);
         NFFGirlsGaiaEntityAttributes.ENTITY_ATTRIBUTE_PROVIDERS.merge();
         NFFGirlsGaiaGeometries.FIELD_PATTERNS.merge();
-
         NFFGirlsGaiaHealingItems.COLLECTION.merge();
         NFFGirlsGaiaFriendingItems.COLLECTION.merge();
+        NFFGirlsGaiaTamingProcesses.TAMING_PROCESSES.merge();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
